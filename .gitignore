@@ -7,6 +7,20 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/Dotnet.gitignore
 
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.cache
+
+# Config lokal
+Web.config
+appsettings.json
+
+# Build output
+bin/
+obj/
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
