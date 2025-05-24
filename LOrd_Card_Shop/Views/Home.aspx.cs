@@ -11,7 +11,19 @@ namespace LOrd_Card_Shop.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                ShowWelcomeMessage();
+            }
+        }
 
+        private void ShowWelcomeMessage()
+        {
+            if (Session["user"] != null || Request.Cookies["user_cookies"] != null)
+            {
+                string username = Session["user"].ToString();
+                welcome.Text = $"<div class='username'  >Welcome, {username}!</div>";
+            }
         }
     }
 }
