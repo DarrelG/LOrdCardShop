@@ -14,8 +14,8 @@ namespace LOrd_Card_Shop.Singleton
         private static Database1Entities instance;
         private static readonly object lockObject = new object();
 
-        protected static DbSet<User> UserDb;
-        protected static DbSet<Cart> CartDb;
+        protected static DbSet<Users> UserDb;
+        protected static DbSet<Carts> CartDb;
         protected static DbSet<Card> CardDb;
         protected static DbSet<TransactionHeader> ThDb;
         protected static DbSet<TransactionDetail> TdDb;
@@ -45,9 +45,9 @@ namespace LOrd_Card_Shop.Singleton
             var db = await GetInstanceAsync();
             UserDb = db.Users;
             CartDb = db.Carts;
-            CardDb = db.Cards;
-            ThDb = db.TransactionHeaders;
-            TdDb = db.TransactionDetails;
+            CardDb = db.Card;
+            ThDb = db.TransactionHeader;
+            TdDb = db.TransactionDetail;
         }
 
         public static void addUserCookie(string Users)

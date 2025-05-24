@@ -8,9 +8,9 @@ namespace LOrd_Card_Shop.Factory
 {
     public class UserFactory
     {
-        public static User createNewUser(string username, string password, string email, string gender, DateTime DOB)
+        public static Users createNewUser(string username, string password, string email, string gender, DateTime DOB)
         {
-            User user = new User();
+            Users user = new Users();
             user.UserName = username;
             user.UserPassword = password;
             user.UserEmail = email;

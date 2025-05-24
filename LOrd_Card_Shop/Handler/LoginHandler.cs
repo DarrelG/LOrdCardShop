@@ -26,7 +26,7 @@ namespace LOrd_Card_Shop.Handler
             {
                 if (UserRepository.loginValidation(username, password) == true)
                 {
-                    User dbUserName = UserRepository.getUserByName(username);
+                    Users dbUserName = UserRepository.getUserByName(username);
                     Session["User"] = dbUserName.UserName;
 
                     if (rememberMe.Checked)

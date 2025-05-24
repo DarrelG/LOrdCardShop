@@ -12,12 +12,12 @@ namespace LOrd_Card_Shop.Repository
 {
     public class UserRepository : dbSingleton
     {
-        public static User getUserById(int user)
+        public static Users getUserById(int user)
         {
             return UserDb.FirstOrDefault(x => x.UserID == user);
         }
 
-        public static User getUserByName(string name)
+        public static Users getUserByName(string name)
         {
             return UserDb.FirstOrDefault(x => x.UserName == name);
         }
@@ -34,7 +34,7 @@ namespace LOrd_Card_Shop.Repository
 
         public static async Task createNewUser(string username, string password, string email, string gender, DateTime DOB)
         {
-            User newUser = UserFactory.createNewUser(username, password, email, gender, DOB);
+            Users newUser = UserFactory.createNewUser(username, password, email, gender, DOB);
             await InitAsync();
             UserDb.Add(newUser);
             saveDbChange();
