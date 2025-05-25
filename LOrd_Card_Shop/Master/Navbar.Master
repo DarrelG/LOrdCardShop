@@ -83,18 +83,21 @@
             background: white;
             border-radius: 8px;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            width: 150px;
+            width: 200px;
             padding: 10px;
             display: none;
             opacity: 0;
             transform: translateY(-10px);
             transition: opacity 0.3s ease, transform 0.3s ease;
+            height: 80px;
         }
 
         .profile-menu p {
             margin: 0;
             cursor: pointer;
+            padding: 10px;
         }
+
 
         .profile-menu p:hover {
             background: #f1f1f1;
@@ -116,20 +119,14 @@
                 cursor: pointer;
             }
 
-        @media (max-width: 600px) {
-            .navbar {
-                flex-direction: column;
-                text-align: center;
-            }
+        .edit_profile{
+            color: black;
+        }
 
-            .nav-links {
-                margin-top: 10px;
-                flex-direction: column;
-            }
-
-            .username-label {
-                margin: 10px 0;
-            }
+        .btn{
+            padding: 5px;
+            margin-left: 10px;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -140,17 +137,17 @@
             
             <div class="nav-links">
                 <a href="OrderCard.aspx">Order Card</a>
-                <a href="History.aspx">History</a>
+                <a href="TransactionHistory.aspx">History</a>
                 <a href="Cart.aspx">Cart</a>
             </div>
 
-            <asp:Label ID="UsernameLabel" runat="server" CssClass="username-label"></asp:Label>
+            
 
             <div class="nav-buttons">
                 <asp:Panel ID="DefaultNavbar" runat="server" Visible="false">
-                    <p class="profile-btn" onclick="toggleProfileMenu()">Profile</p>
+                    <asp:Label ID="UsernameLabel" runat="server" CssClass="username-label profile-btn" onclick="toggleProfileMenu()"></asp:Label>
                     <div id="profileMenu" class="profile-menu">
-                        <p>Edit Profile</p>
+                        <p class="edit_profile">Edit Profile</p>
                         <asp:Button ID="LogoutBtn" runat="server" CssClass="btn" Text="LogOut" OnClick="LogoutBtn_Click" />
                     </div>
                 </asp:Panel>
