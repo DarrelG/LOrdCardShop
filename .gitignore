@@ -10,3 +10,6 @@ Web.config
 # Build output
 bin/
 obj/
+
+*.config
+*.json
