@@ -139,7 +139,7 @@
             <h1><a href="Home.aspx" style="color: #f39c12;">LOrd Card Shop</a></h1>
             
             <div class="nav-links">
-                <a href="Order.aspx">Order Card</a>
+                <a href="OrderCard.aspx">Order Card</a>
                 <a href="History.aspx">History</a>
                 <a href="Cart.aspx">Cart</a>
             </div>

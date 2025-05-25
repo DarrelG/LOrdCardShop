@@ -28,6 +28,7 @@ namespace LOrd_Card_Shop.Handler
                 {
                     Users dbUserName = UserRepository.getUserByName(username);
                     Session["User"] = dbUserName.UserName;
+                    Session["UserID"] = dbUserName.UserID;
 
                     if (rememberMe.Checked)
                     {
