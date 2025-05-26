@@ -10,7 +10,6 @@
         <EntityTypeShape EntityType="Database1Model.TransactionHeader" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Database1Model.Users" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
         <EntityTypeShape EntityType="Database1Model.TransactionDetail" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
-        <AssociationConnector Association="Database1Model.FK__Carts__CardID__3A81B327" ManuallyRouted="false" />
         <AssociationConnector Association="Database1Model.FK__Transacti__CardI__412EB0B6" ManuallyRouted="false" />
         <AssociationConnector Association="Database1Model.FK__Carts__UserID__3B75D760" ManuallyRouted="false" />
         <AssociationConnector Association="Database1Model.FK__Transacti__Custo__3E52440B" ManuallyRouted="false" />

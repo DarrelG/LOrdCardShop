@@ -14,7 +14,7 @@ namespace LOrd_Card_Shop.Models
     
     public partial class TransactionDetail
     {
-        public int TransacttionID { get; set; }
+        public int? TransacttionID { get; set; }
         public int CardID { get; set; }
         public int Quantity { get; set; }
     

@@ -24,7 +24,7 @@ namespace LOrd_Card_Shop.Repository
 
         public static bool loginValidation(string name, string password)
         {
-            InitAsync();
+            InitAsync().Wait();
             if(UserDb.FirstOrDefault(x => x.UserName == name && x.UserPassword == password) != null)
             {
                 return true;

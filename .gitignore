@@ -13,3 +13,8 @@ obj/
 
 *.config
 *.json
+
+# Ignore SQL Server DB files
+*.mdf
+*.ldf
+App_Data/
