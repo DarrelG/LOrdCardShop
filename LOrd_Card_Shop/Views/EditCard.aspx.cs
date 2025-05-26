@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace LOrd_Card_Shop.Views
+{
+    public partial class EditCard : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void UpdateBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
+}

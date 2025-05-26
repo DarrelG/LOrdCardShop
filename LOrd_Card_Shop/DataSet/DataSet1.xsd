@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSet1" targetNamespace="http://tempuri.org/DataSet1.xsd" xmlns:mstns="http://tempuri.org/DataSet1.xsd" xmlns="http://tempuri.org/DataSet1.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="DataSet1" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSet1">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="TransactionReport" msprop:Generator_RowClassName="TransactionReportRow" msprop:Generator_RowEvHandlerName="TransactionReportRowChangeEventHandler" msprop:Generator_RowDeletedName="TransactionReportRowDeleted" msprop:Generator_RowDeletingName="TransactionReportRowDeleting" msprop:Generator_RowEvArgName="TransactionReportRowChangeEvent" msprop:Generator_TablePropName="TransactionReport" msprop:Generator_RowChangedName="TransactionReportRowChanged" msprop:Generator_UserTableName="TransactionReport" msprop:Generator_RowChangingName="TransactionReportRowChanging" msprop:Generator_TableClassName="TransactionReportDataTable" msprop:Generator_TableVarName="tableTransactionReport">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TransactionID" msprop:Generator_UserColumnName="TransactionID" msprop:Generator_ColumnPropNameInTable="TransactionIDColumn" msprop:Generator_ColumnPropNameInRow="TransactionID" msprop:Generator_ColumnVarNameInTable="columnTransactionID" type="xs:int" minOccurs="0" />
+              <xs:element name="CustomerName" msprop:Generator_UserColumnName="CustomerName" msprop:Generator_ColumnPropNameInTable="CustomerNameColumn" msprop:Generator_ColumnPropNameInRow="CustomerName" msprop:Generator_ColumnVarNameInTable="columnCustomerName" type="xs:string" minOccurs="0" />
+              <xs:element name="TransactionDate" msprop:Generator_UserColumnName="TransactionDate" msprop:Generator_ColumnPropNameInTable="TransactionDateColumn" msprop:Generator_ColumnPropNameInRow="TransactionDate" msprop:Generator_ColumnVarNameInTable="columnTransactionDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="CardName" msprop:Generator_UserColumnName="CardName" msprop:Generator_ColumnPropNameInTable="CardNameColumn" msprop:Generator_ColumnPropNameInRow="CardName" msprop:Generator_ColumnVarNameInTable="columnCardName" type="xs:string" minOccurs="0" />
+              <xs:element name="Quantity" msprop:Generator_UserColumnName="Quantity" msprop:Generator_ColumnPropNameInTable="QuantityColumn" msprop:Generator_ColumnPropNameInRow="Quantity" msprop:Generator_ColumnVarNameInTable="columnQuantity" type="xs:int" minOccurs="0" />
+              <xs:element name="CardPrice" msprop:Generator_UserColumnName="CardPrice" msprop:Generator_ColumnPropNameInTable="CardPriceColumn" msprop:Generator_ColumnPropNameInRow="CardPrice" msprop:Generator_ColumnVarNameInTable="columnCardPrice" type="xs:decimal" minOccurs="0" />
+              <xs:element name="SubTotal" msprop:Generator_UserColumnName="SubTotal" msprop:Generator_ColumnPropNameInTable="SubTotalColumn" msprop:Generator_ColumnPropNameInRow="SubTotal" msprop:Generator_ColumnVarNameInTable="columnSubTotal" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
