@@ -1,43 +1,75 @@
 ﻿using System;
 using System.Collections.Generic;
+using LOrd_Card_Shop.Singleton;
 using System.Linq;
 using System.Web;
 using LOrd_Card_Shop.Models;
+using System.Threading.Tasks;
+using LOrd_Card_Shop.Factory;
 
 namespace LOrd_Card_Shop.Repository
 {
-    public class CardRepository
+    public class CardRepository : dbSingleton
     {
-        Database1Entities db = new Database1Entities();
-
-        public List<Card> GetAllCards()
+        public static List<Card> GetAllCards()
         {
-            return db.Card.ToList();
+            InitAsync().Wait();
+            List<Card> cards = CardDb.ToList();
+            return cards;
         }
 
-        public Card GetCardById(int id)
+        public static Card GetCardById(int id)
         {
-            return db.Card.Find(id);
+            return CardDb.Find(id);
         }
-        public void AddToCart(int userID, int cardID)
+
+        public static void deleteCard(int id)
         {
-            var existingCart = db.Carts.FirstOrDefault(c => c.UserID == userID && c.CardID == cardID);
-            if (existingCart != null)
+            //InitAsync().Wait();
+            Card deleteCard = CardDb.FirstOrDefault(x => x.CardID == id);
+            if (deleteCard != null)
             {
-                existingCart.Quantity += 1;
+                CardDb.Remove(deleteCard);
+                saveDbChange();
+                //try
+                //{
+                    
+                //}
+                //catch (Exception ex)
+                //{
+                //    Console.WriteLine(ex);
+                //}
             }
-            else
+        }
+
+        public static void editCard(int id, string name, decimal price, string desc, string type, bool isCurFoil)
+        {
+            InitAsync().Wait();
+            Card existingCard = CardDb.FirstOrDefault(x => x.CardID == id);
+            if (existingCard != null)
             {
-                Carts newCart = new Carts
+                try
                 {
-                    UserID = userID,
-                    CardID = cardID,
-                    Quantity = 1
-                };
-                db.Carts.Add(newCart);
+                    existingCard.CardName = name;
+                    existingCard.CardPrice = price;
+                    existingCard.CardDesc = desc;
+                    existingCard.CardType = type;
+                    existingCard.isFoil = isCurFoil;
+                    saveDbChange();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
             }
-            
-            db.SaveChanges();
+        }
+
+        public async static Task addCard(string name, decimal price, string desc, string type, bool isCurFoil)
+        {
+            Card addCard = CardFactory.createNewCard(name, price, desc, type, isCurFoil);
+            await InitAsync();
+            CardDb.Add(addCard);
+            saveDbChange();            
         }
     }
 }

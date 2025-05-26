@@ -22,5 +22,28 @@ namespace LOrd_Card_Shop.Repository
             db.Carts.RemoveRange(cartItems);
             db.SaveChanges();
         }
+
+        public void AddToCart(int userID, int cardID)
+        {
+            // Masukin ke Handler
+            var existingCart = CartDb.FirstOrDefault(c => c.UserID == userID && c.CardID == cardID);
+            if (existingCart != null)
+            {
+                existingCart.Quantity += 1;
+            }
+            else
+            {
+                //Masukin ke Factory
+                Carts newCart = new Carts
+                {
+                    UserID = userID,
+                    CardID = cardID,
+                    Quantity = 1
+                };
+                CartDb.Add(newCart);
+            }
+
+            saveDbChange();
+        }
     }
 }

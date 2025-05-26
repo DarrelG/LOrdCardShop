@@ -43,6 +43,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Web, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -75,6 +79,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Handler\TransactionReportHandler.cs" />
+    <Compile Include="Models\TransactionReportModel.cs" />
+    <Compile Include="Repository\TransactionReportRepository.cs" />
+    <Compile Include="Views\ViewTransactionReport.aspx.cs">
+      <DependentUpon>ViewTransactionReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ViewTransactionReport.aspx.designer.cs">
+      <DependentUpon>ViewTransactionReport.aspx</DependentUpon>
+    </Compile>
+    <Content Include="App_Data\Database1.mdf" />
     <Content Include="App_Data\Database1_log.ldf">
       <DependentUpon>Database1.mdf</DependentUpon>
     </Content>
@@ -88,7 +103,15 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Content Include="Views\CardEdit.aspx" />
+    <Content Include="Views\ViewTransactionReport.aspx" />
     <Content Include="Web.config" />
+    <Compile Include="DataSet\DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Factory\CardFactory.cs" />
     <Compile Include="Factory\UserFactory.cs" />
     <Compile Include="Handler\CardHandler.cs" />
     <Compile Include="Handler\LoginHandler.cs" />
@@ -124,8 +147,36 @@
     </Compile>
     <Compile Include="obj\Debug\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Report\CrystalReport1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReport1.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Repository\CardRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Singleton\dbSingleton.cs" />
+    <Compile Include="Views\CardAdd.aspx.cs">
+      <DependentUpon>CardAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\CardAdd.aspx.designer.cs">
+      <DependentUpon>CardAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CardEdit.aspx.cs">
+      <DependentUpon>CardEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\CardEdit.aspx.designer.cs">
+      <DependentUpon>CardEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditCard.aspx.cs">
+      <DependentUpon>EditCard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\EditCard.aspx.designer.cs">
+      <DependentUpon>EditCard.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Home.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -134,9 +185,15 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Login.aspx.designer.cs" />
+    <Compile Include="Views\ManageCard.aspx.cs">
+      <DependentUpon>ManageCard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ManageCard.aspx.designer.cs">
+      <DependentUpon>ManageCard.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\OrderCard.aspx.cs">
       <DependentUpon>OrderCard.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\OrderCard.aspx.designer.cs">
       <DependentUpon>OrderCard.aspx</DependentUpon>
@@ -150,10 +207,66 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
-    <Content Include="**\*.aspx" />
+    <Content Include="Views\CardAdd.aspx" />
+    <Content Include="Views\CardDetail.aspx" />
+    <Content Include="Views\CardEdit.aspx" />
+    <Content Include="Views\Cart.aspx" />
+    <Content Include="Views\CheckOut.aspx" />
+    <Content Include="Views\EditCard.aspx" />
+    <Content Include="Views\Home.aspx" />
+    <Content Include="Views\Login.aspx" />
+    <Content Include="Views\ManageCard.aspx" />
+    <Content Include="Views\OrderCard.aspx" />
+    <Content Include="Views\Register.aspx" />
     <Content Include="**\*.ascx" />
     <Content Include="**\*.master" />
     <Content Include="**\*.resx" />
+    <Content Include="Factory\UserFactory.cs" />
+    <Content Include="Handler\CardHandler.cs" />
+    <Content Include="Handler\CartHandler.cs" />
+    <Content Include="Handler\LoginHandler.cs" />
+    <Content Include="Handler\RegisterHandler.cs" />
+    <Content Include="Master\Navbar.Master.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Master\Navbar.Master.designer.cs" />
+    <Content Include="Models\Card.cs" />
+    <Content Include="Models\Carts.cs" />
+    <Content Include="Models\Model1.Context.cs" />
+    <Content Include="Models\Model1.cs" />
+    <Content Include="Models\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Content>
+    <Content Include="Models\TransactionDetail.cs" />
+    <Content Include="Models\TransactionHeader.cs" />
+    <Content Include="Models\Users.cs" />
+    <Content Include="obj\Debug\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
+    <Content Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Repository\CardsRepository.cs" />
+    <Content Include="Repository\CartRepository.cs" />
+    <Content Include="Repository\UserRepository.cs" />
+    <Content Include="Singleton\dbSingleton.cs" />
+    <Content Include="Views\CardDetail.aspx.cs" />
+    <Content Include="Views\CardDetail.aspx.designer.cs" />
+    <Content Include="Views\Cart.aspx.cs" />
+    <Content Include="Views\Cart.aspx.designer.cs" />
+    <Content Include="Views\CheckOut.aspx.cs" />
+    <Content Include="Views\CheckOut.aspx.designer.cs" />
+    <Content Include="Views\Home.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Views\Home.aspx.designer.cs" />
+    <Content Include="Views\Login.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Views\Login.aspx.designer.cs" />
+    <Content Include="Views\OrderCard.aspx.cs" />
+    <Content Include="Views\OrderCard.aspx.designer.cs" />
+    <Content Include="Views\Register.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Views\Register.aspx.designer.cs" />
     <Content Include="**\*.mdf" />
   </ItemGroup>
   <ItemGroup>
@@ -167,6 +280,17 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="DataSet\DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Content>
+    <None Include="DataSet\DataSet1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="DataSet\DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Content>
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -178,6 +302,13 @@
   <ItemGroup />
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Report\CrystalReport1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReport1.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -194,7 +325,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>60799</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:44327/</IISUrl>
+          <IISUrl>https://localhost:44327/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
