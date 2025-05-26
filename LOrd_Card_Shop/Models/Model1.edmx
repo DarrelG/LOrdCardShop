@@ -15,7 +15,7 @@
           <Property Name="CardDesc" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="CardType" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="isFoil" Type="bit" Nullable="false" />
-          <Property Name="CartsCartID" Type="int" Nullable="false" />
+          <Property Name="CartsCartID" Type="int" Nullable="true" />
         </EntityType>
         <EntityType Name="Carts">
           <Key>
@@ -166,7 +166,7 @@ warning 6002: The table/view 'C:\USERS\ASUS\ONEDRIVE - BINA NUSANTARA\DOCUMENTS\
           <Property Name="CardDesc" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CardType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="isFoil" Type="Boolean" Nullable="false" />
-          <Property Name="CartsCartID" Type="Int32" Nullable="false" />
+          <Property Name="CartsCartID" Type="Int32" Nullable="true" />
           <NavigationProperty Name="Carts" Relationship="Self.FK__Carts__CardID__3A81B327" FromRole="Card" ToRole="Carts" />
           <NavigationProperty Name="TransactionDetail" Relationship="Self.FK__Transacti__CardI__412EB0B6" FromRole="Card" ToRole="TransactionDetail" />
         </EntityType>
