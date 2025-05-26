@@ -31,10 +31,14 @@
     }
 </style>
     <div id="TransactionHistory">
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="false" CssClass="custom-gridview">
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="false" CssClass="custom-gridview" ShowFooter="true" OnRowDataBound="GridView1_RowDataBound" DataFormatString="{0:C}">
             <Columns>
                 <asp:BoundField DataField="CardName" HeaderText="Card Name"></asp:BoundField>
+                <asp:BoundField DataField="CardPrice" HeaderText="Card Price"></asp:BoundField>
+                <asp:BoundField DataField="CardDesc" HeaderText="Description"></asp:BoundField>
+                <asp:BoundField DataField="CardType" HeaderText="Card Type"></asp:BoundField>
                 <asp:BoundField DataField="Quantity" HeaderText="Quantity"></asp:BoundField>
+                <asp:BoundField DataField="Total" HeaderText="Total"></asp:BoundField>
             </Columns>
         </asp:GridView>
 

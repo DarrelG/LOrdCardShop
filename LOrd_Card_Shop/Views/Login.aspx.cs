@@ -37,8 +37,6 @@ namespace LOrd_Card_Shop.Views
             rememberMe,
             Response,
             Session);
-
-            Response.Redirect("Home.aspx");
         }
     }
 }

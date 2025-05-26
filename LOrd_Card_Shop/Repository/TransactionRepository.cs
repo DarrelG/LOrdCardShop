@@ -35,7 +35,10 @@ namespace LOrd_Card_Shop.Repository
                     result.Add(new TransactionDetailResult
                     {
                         CardName = item.Card.CardName,
-                        Quantity = item.Quantity
+                        Quantity = item.Quantity,
+                        CardDesc = item.Card.CardDesc,
+                        CardType = item.Card.CardType,
+                        CardPrice = item.Card.CardPrice
                     });
                 };
                 

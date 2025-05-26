@@ -65,6 +65,9 @@
     <asp:Label ID="pwNew" runat="server" Text="New Password"></asp:Label><br />
     <asp:TextBox ID="newPwTb" runat="server" TextMode="Password"></asp:TextBox><br />
 
+    <asp:Label ID="confirmNew" runat="server" Text="Confirm New Password"></asp:Label><br />
+    <asp:TextBox ID="confirmNewTb" runat="server" TextMode="Password"></asp:TextBox><br />
+
     <asp:Button ID="showPass" runat="server" Text="Show Password" OnClientClick="togglePassword(); return false;" /><br />
 
     <div style="display: flex; justify-content: center;">

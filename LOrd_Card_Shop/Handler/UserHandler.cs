@@ -13,52 +13,39 @@ namespace LOrd_Card_Shop.Handler
 {
     public class UserHandler
     {
-        public async static Task createNewUser(string username, string password, string email, string gender, DateTime DOB, Label err)
+        public async static Task createNewUser(string username, string password, string email, string gender, DateTime DOB)
         {
-            try
+            if (UserRepository.getUserByName(username) != null)
             {
-                if (UserRepository.getUserByName(username) != null)
-                {
-                    throw new Exception("Username already exists");
-                }
-                else
-                {
-                   await UserRepository.createNewUser(username, password, email, gender, DOB);
-                }
+                throw new Exception("Username already exists");
+            }else if(UserRepository.getUserByEmail(email) != null)
+            {
+                throw new Exception("Email already exists");
             }
-            catch(Exception ex)
+            else
             {
-                err.Visible = true;
-                err.Text = ex.Message;
+                await UserRepository.createNewUser(username, password, email, gender, DOB);
             }
         }
 
         public static void loginUser(string username, string password, Label errLbl, CheckBox rememberMe, HttpResponse Response, HttpSessionState Session)
         {
-            try
+            if (UserRepository.loginValidation(username, password) == false)
             {
-                if (UserRepository.loginValidation(username, password) == false)
-                {
-                    throw new Exception("Username or Password invalid!");
-                }
-                else
-                {
-                    Users dbUserName = UserRepository.getUserByName(username);
-                    Session["User"] = dbUserName.UserName;
-                    Session["UserID"] = dbUserName.UserID;
-                    if (rememberMe.Checked)
-                    {
-                        HttpCookie userCookie = new HttpCookie("user_cookie", dbUserName.UserName);
-                        userCookie.Expires = DateTime.Now.AddDays(1);
-                        Response.Cookies.Set(userCookie);
-                        Response.Cookies.Add(userCookie);
-                    }
-                }
+                throw new Exception("Username or Password invalid!");
             }
-            catch (Exception ex)
+            else
             {
-                errLbl.Visible = true;
-                errLbl.Text = ex.Message;
+                Users dbUserName = UserRepository.getUserByName(username);
+                Session["User"] = dbUserName.UserName;
+                Session["UserID"] = dbUserName.UserID;
+                if (rememberMe.Checked)
+                {
+                    HttpCookie userCookie = new HttpCookie("user_cookie", dbUserName.UserName);
+                    userCookie.Expires = DateTime.Now.AddDays(1);
+                    Response.Cookies.Set(userCookie);
+                    Response.Cookies.Add(userCookie);
+                }
             }
         }
 
@@ -70,6 +57,7 @@ namespace LOrd_Card_Shop.Handler
         public static async Task updateUserData(
             string username,
             string password,
+            string newPass,
             string gender,
             string email,
             DateTime DOB,
@@ -85,12 +73,29 @@ namespace LOrd_Card_Shop.Handler
                 throw new Exception("Email already exists");
             }
 
-            if(!string.Equals(gender, "Male") && !string.Equals(gender, "Female"))
+            if (!string.Equals(gender, "Male") && !string.Equals(gender, "Female"))
             {
                 throw new Exception("Please choose valid gender");
             }
 
-            await UserRepository.createNewUser(username, password, email, gender, DOB);
+            if (!string.Equals(password, ""))
+            {
+                if (UserRepository.getUserByName(username).UserPassword != password)
+                {
+                    throw new Exception("Old Password invalid");
+                }
+
+                if (UserRepository.getUserByName(username).UserPassword == newPass)
+                {
+                    throw new Exception("New password cant be same as old one");
+                }
+
+                await UserRepository.updateUser(username, password, email, gender, DOB);
+            }
+            else
+            {
+                await UserRepository.updateUserWoPass(username, email, gender, DOB);
+            } 
         }
     }
 }

@@ -29,14 +29,14 @@ namespace LOrd_Card_Shop.Controller
             {
                 username = Regex.IsMatch(username, @"^[A-Za-z]{5,30}$") ? username : throw new Exception("Username Invalid");
                 email = email.Contains("@") ? email : throw new Exception("Email must contain '@'");
-                password = Regex.IsMatch(password, @"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{7,}$") ? password = Regex.IsMatch(password, confirmPass) ? password : throw new Exception("Confirm password must be same as password") : throw new Exception("Password must at least 8 length");
+                password = Regex.IsMatch(password, @"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$") ? password = Regex.IsMatch(password, confirmPass) ? password : throw new Exception("Confirm password must be same as password") : throw new Exception("Password must at least 8 length and contain Alphabeth and Number Combination");
                 gender = gender == null || (gender != "Male" && gender != "Female") ? throw new Exception("Please choose valid gender") : gender;
                 DOB = DOB == null ? throw new Exception("Please fill your Birth of Date") : DOB;
 
                 
-                await UserHandler.createNewUser(username, password, email, gender, DOB, errLbl);
+                await UserHandler.createNewUser(username, password, email, gender, DOB);
 
-                Response.Redirect("Login.aspx");
+                Response.Redirect("Login.aspx", false);
             }
             catch (Exception ex)
             {
@@ -62,6 +62,8 @@ namespace LOrd_Card_Shop.Controller
                 {
                     UserHandler.loginUser(username, password, errLbl, rememberMe, Response, Session);
                 }
+
+                Response.Redirect("Home.aspx");
             }
             catch(Exception ex)
             {
@@ -79,25 +81,32 @@ namespace LOrd_Card_Shop.Controller
         public async static Task updateUserData(
             string username,
             string password,
+            string newPass,
             string confirmPass,
             string gender,
             string email,
             DateTime DOB,
             Label err,
-            int Id)
+            int Id,
+            HttpResponse response)
         {
             try
             {
+                if(!string.Equals(password, ""))
+                {
+                    password = Regex.IsMatch(password, @"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$") ? password : throw new Exception("Old Password not valid");
+                    newPass = Regex.IsMatch(password, @"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$") ? newPass : throw new Exception("New Password must at least 8 length");
+                    confirmPass = Regex.IsMatch(newPass, confirmPass) ? newPass : throw new Exception("Confirm Password is invalid");
+                }
+
                 username = Regex.IsMatch(username, @"^[A-Za-z]{5,30}$") ? username : throw new Exception("Username Invalid");
                 email = email.Contains("@") ? email : throw new Exception("Email must contain '@'");
-                password = Regex.IsMatch(password, @"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{7,}$") ? password : throw new Exception("Old Password must at least 8 length");
-                confirmPass= Regex.IsMatch(password, @"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{7,}$") ? password : throw new Exception("New Password must at least 8 length");
-                confirmPass= Regex.IsMatch(password, confirmPass) ? password : throw new Exception("New password must be same as old password");
                 gender = gender == null || (gender != "Male" && gender != "Female") ? throw new Exception("Please choose valid gender") : gender;
                 DOB = DOB == null ? throw new Exception("Please fill your Birth of Date") : DOB;
 
-                await UserHandler.updateUserData(username, confirmPass, gender, email, DOB, Id);
+                await UserHandler.updateUserData(username, password, newPass, gender, email, DOB, Id);
 
+                response.Redirect("Home.aspx", false);
             } catch (Exception ex)
             {
                 err.Visible = true;

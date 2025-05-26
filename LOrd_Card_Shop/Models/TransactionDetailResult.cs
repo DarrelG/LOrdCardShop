@@ -9,5 +9,9 @@ namespace LOrd_Card_Shop.Models
     {
         public int Quantity { get; set; }
         public string CardName { get; set; }
+        public decimal CardPrice { get; set; }
+        public decimal Total => Quantity * CardPrice;
+        public string CardDesc { get; set; }
+        public string CardType { get; set; }
     }
 }

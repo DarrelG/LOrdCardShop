@@ -87,6 +87,24 @@ namespace LOrd_Card_Shop.Views
         protected global::System.Web.UI.WebControls.TextBox newPwTb;
 
         /// <summary>
+        /// confirmNew control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label confirmNew;
+
+        /// <summary>
+        /// confirmNewTb control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox confirmNewTb;
+
+        /// <summary>
         /// showPass control.
         /// </summary>
         /// <remarks>
