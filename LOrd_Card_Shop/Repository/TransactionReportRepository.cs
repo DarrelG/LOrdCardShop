@@ -26,7 +26,7 @@ namespace LOrd_Card_Shop.Repository
                              Quantity = td.Quantity,
                              CardPrice = c.CardPrice,
                              SubTotal = td.Quantity * c.CardPrice
-                         };
+                         }; 
             return result.ToList();
         }
     }
