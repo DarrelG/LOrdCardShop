@@ -52,7 +52,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="login-container">
-        <h2>Login</h2>
+        <h2>Register</h2>
 
         <asp:Label ID="uNameLbl" runat="server" Text="Username"></asp:Label><br />
         <asp:TextBox ID="uNameTb" runat="server"></asp:TextBox><br />

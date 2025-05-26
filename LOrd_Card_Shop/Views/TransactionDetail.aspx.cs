@@ -22,7 +22,7 @@ namespace LOrd_Card_Shop.Views
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Views/TransactionList.aspx");
+            Response.Redirect("~/Views/TransactionHistory.aspx");
         }
     }
 }

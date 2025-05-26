@@ -1,4 +1,5 @@
-﻿using LOrd_Card_Shop.Factory;
+﻿using LOrd_Card_Shop.Controller;
+using LOrd_Card_Shop.Factory;
 using LOrd_Card_Shop.Handler;
 using System;
 using System.Collections.Generic;
@@ -30,7 +31,7 @@ namespace LOrd_Card_Shop.Views
             string email = emailTb.Text;
             DateTime DOB = Calendar1.SelectedDate;
 
-            await RegisterHandler.registerNewUser(username, password, confirmpass, gender, email, DOB, errLbl, Response, Session);
+            await UserController.registerUser(username, password, confirmpass, gender, email, DOB, errLbl, Response, Session);
         }
     }
 }

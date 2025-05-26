@@ -4,6 +4,7 @@ using LOrd_Card_Shop.Singleton;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -25,7 +26,7 @@ namespace LOrd_Card_Shop.Repository
         public static bool loginValidation(string name, string password)
         {
             InitAsync().Wait();
-            if(UserDb.FirstOrDefault(x => x.UserName == name && x.UserPassword == password) != null)
+            if (UserDb.FirstOrDefault(x => x.UserName == name && x.UserPassword == password) != null)
             {
                 return true;
             }
@@ -38,6 +39,27 @@ namespace LOrd_Card_Shop.Repository
             await InitAsync();
             UserDb.Add(newUser);
             saveDbChange();
+        }
+
+        public static async Task updateUser(string username, string password, string email, string gender, DateTime DOB)
+        {
+            await InitAsync();
+            Users user = UserDb.FirstOrDefault(x => x.UserName == username);
+            if (user != null)
+            {
+                user.UserName = username;
+                user.UserPassword = password;
+                user.UserEmail = email;
+                user.UserGender = gender;
+                user.UserDOB = DOB;
+                UserDb.AddOrUpdate(user);
+                saveDbChange();
+            }
+        }
+
+        public static Users getUserByEmail(string email)
+        {
+            return UserDb.FirstOrDefault(x => x.UserEmail == email);
         }
     }
 }

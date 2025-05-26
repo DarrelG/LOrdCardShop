@@ -1,10 +1,12 @@
-﻿using LOrd_Card_Shop.Handler;
+﻿using LOrd_Card_Shop.Controller;
+using LOrd_Card_Shop.Handler;
 using LOrd_Card_Shop.Models;
 using LOrd_Card_Shop.Repository;
 using LOrd_Card_Shop.Singleton;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -29,12 +31,14 @@ namespace LOrd_Card_Shop.Views
             string username = uNameTb.Text;
             string password = pwTb.Text;
 
-            LoginHandler.LoginHandlers(username,
+            UserController.loginUser(username,
             password,
             errLbl,
             rememberMe,
             Response,
             Session);
+
+            Response.Redirect("Home.aspx");
         }
     }
 }

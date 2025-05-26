@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using LOrd_Card_Shop.Controller;
 
 namespace LOrd_Card_Shop.Views
 {
@@ -13,7 +14,7 @@ namespace LOrd_Card_Shop.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            List<TransactionHeader> list = TransactionHandler.GetTransactionHistory(Session, Response);
+            List<TransactionHeader> list = TransactionController.GetTransactionHistory(Session, Response);
 
             GridView1.DataSource = list;
             GridView1.DataBind();

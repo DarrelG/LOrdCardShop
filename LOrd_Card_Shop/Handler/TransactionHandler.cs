@@ -16,38 +16,21 @@ namespace LOrd_Card_Shop.Handler
         {
             return TransactionRepository.GetTransactionDetails(transactionId);
         }
-     
-        public static List<TransactionHeader> GetTransactionHistory(HttpSessionState Session, HttpResponse Response)
+
+        public static List<TransactionHeader> GetTransactionHistory(int userId, string userRole)
         {
-            try
+            if (UserRepository.getUserById(userId) == null)
             {
-                if (Session["UserID"] != null)
-                {
-                    int userId = Convert.ToInt32(Session["UserID"]);
-                    Users userData = UserRepository.getUserById(userId);
-
-                    if(string.Equals(userData.UserRole, "Admin"))
-                    {
-                        return TransactionRepository.GetTransactionHistory(null);
-                    }
-                    else
-                    {
-                        return TransactionRepository.GetTransactionHistory(userId);
-                    }
-
-                    
-                }
-                else
-                {
-                    throw new Exception("User not logged in");
-                }
+                throw new Exception("User not found");
             }
-            catch (Exception ex)
+            else if (userRole == "Admin")
             {
-                Response.Redirect("Login.aspx");
-                return new List<TransactionHeader>();
+                return TransactionRepository.GetTransactionHistory(null);
             }
-
-        }
+            else
+            {
+                return TransactionRepository.GetTransactionHistory(userId);
+            }
+        }  
     }
 }
