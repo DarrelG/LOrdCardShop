@@ -13,6 +13,7 @@ namespace LOrd_Card_Shop.Repository
 {
     public class UserRepository : dbSingleton
     {
+        
         public static Users getUserById(int user)
         {
             return UserDb.FirstOrDefault(x => x.UserID == user);
@@ -20,6 +21,7 @@ namespace LOrd_Card_Shop.Repository
 
         public static Users getUserByName(string name)
         {
+            InitAsync().Wait();
             return UserDb.FirstOrDefault(x => x.UserName == name);
         }
 
@@ -57,8 +59,24 @@ namespace LOrd_Card_Shop.Repository
             }
         }
 
+        public static async Task updateUserWoPass(string username, string email, string gender, DateTime DOB)
+        {
+            await InitAsync();
+            Users user = UserDb.FirstOrDefault(x => x.UserName == username);
+            if (user != null)
+            {
+                user.UserName = username;
+                user.UserEmail = email;
+                user.UserGender = gender;
+                user.UserDOB = DOB;
+                UserDb.AddOrUpdate(user);
+                saveDbChange();
+            }
+        }
+
         public static Users getUserByEmail(string email)
         {
+            InitAsync().Wait();
             return UserDb.FirstOrDefault(x => x.UserEmail == email);
         }
     }

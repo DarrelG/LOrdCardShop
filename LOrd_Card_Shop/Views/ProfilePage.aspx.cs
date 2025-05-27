@@ -19,18 +19,20 @@ namespace LOrd_Card_Shop.Views
             emailTb.Text = data.UserEmail;
             Calendar1.SelectedDate = data.UserDOB;
             genderRBList.SelectedValue = data.UserGender;
+            pwTb.Attributes["placeholder"] = "Optional";
         }
 
         protected async void updateBtn_Click(object sender, EventArgs e)
         {
             string username = uNameTb.Text;
             string password = pwTb.Text;
-            string confirmpass = newPwTb.Text;
+            string newPass = newPwTb.Text;
+            string confirmpass = confirmNewTb.Text;
             string gender = genderRBList.SelectedValue;
             string email = emailTb.Text;
             DateTime DOB = Calendar1.SelectedDate;
 
-            await UserController.updateUserData(username, password, confirmpass, gender, email, DOB, errLbl, Convert.ToInt32(Session["UserID"]));
+            await UserController.updateUserData(username, password, newPass, confirmpass, gender, email, DOB, errLbl, Convert.ToInt32(Session["UserID"]), Response);
 
         }
     }

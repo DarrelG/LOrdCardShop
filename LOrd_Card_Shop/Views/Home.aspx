@@ -61,23 +61,32 @@
             position: relative;
             font-style: italic;
         }
+        p{
+            text-decoration: none;
+        }
     </style>
     <asp:Label ID="welcome" runat="server" Text=""></asp:Label>
     <div class="section">
         <h3 style="font-size: 24px; color: #2c3e50; margin-bottom: 25px;">Quick Access</h3>
         <div class="quick-links">
-            <div class="quick-link-card">
-                <i class="fas fa-shopping-cart"></i>
-                <a href="OrderCard.aspx">Order Cards</a>
-            </div>
-            <div class="quick-link-card">
-                <i class="fas fa-cart-plus"></i>
-                <a href="Cart.aspx">View Cart</a>
-            </div>
-            <div class="quick-link-card">
-                <i class="fas fa-user-edit"></i>
-                <a href="Profile.aspx">Update Profile</a>
-            </div>
+            <a href="OrderCard.aspx" class="quick-link-card">
+                <div>
+                    <i class="fas fa-shopping-cart"></i>
+                    <p>Order Cards</p>
+                </div>
+            </a>
+            <a href="Cart.aspx" class="quick-link-card">
+                <div>
+                    <i class="fas fa-cart-plus"></i>
+                    <p>View Cart</p>
+                </div>
+            </a>
+            <a href="ProfilePage.aspx" class="quick-link-card">
+                <div>
+                    <i class="fas fa-user-edit"></i>
+                    <p>Update Profile</p>
+                </div>
+            </a>
         </div>
     </div>
                 
