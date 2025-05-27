@@ -46,14 +46,14 @@ namespace LOrd_Card_Shop.Views
             {
                 var row = mainTable.NewRow();
                 row["TransactionDate"] = model.TransactionDate;
-                //row.TransactionID = model.TransactionID;
-                //row.CustomerName = model.CustomerName;
-                //row.CardName = model.CardName;
-                //row.Quantity = model.Quantity;
-                //row.CardPrice = model.CardPrice;
-                //row.SubTotal = model.SubTotal;
+                row["TransactionID"] = model.TransactionID;
+                row["CustomerName"] = model.CustomerName;
+                row["CardName"] = model.CardName;
+                row["Quantity"] = model.Quantity;
+                row["CardPrice"] = model.CardPrice;
+                row["SubTotal"] = model.SubTotal;
 
-                    mainTable.Rows.Add(row);
+                mainTable.Rows.Add(row);
             }
 
             return dat;

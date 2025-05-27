@@ -11,7 +11,7 @@ namespace LOrd_Card_Shop.Handler
     {
         public static List<TransactionReportModel> GetReportData()
         {
-            return TransactionReportRepository.GetTransactionReportData(); 
+            return TransactionReportRepository.GetTransactionReportData();
         }
     }
 }

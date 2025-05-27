@@ -13,6 +13,6 @@ namespace LOrd_Card_Shop.Models
         public string CardName { get; set; }
         public decimal CardPrice { get; set; }
         public int Quantity { get; set; }
-        public decimal SubTotal { get; set; } 
+        public decimal SubTotal { get; set; }
     }
 }
