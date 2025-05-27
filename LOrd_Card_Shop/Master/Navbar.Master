@@ -148,7 +148,7 @@
                 <a href="Cart.aspx">Cart</a>
             </div>
 
-            <asp:TextBox ID="SearchBar" runat="server" placeholder="Search"></asp:TextBox>
+            <asp:TextBox ID="SearchBar" runat="server" AutoPostBack="true" OnTextChanged="SearchBar_TextChanged" placeholder="Search"></asp:TextBox>
 
             <div class="nav-buttons">
                 <asp:Panel ID="DefaultNavbar" runat="server" Visible="false">

@@ -71,5 +71,12 @@ namespace LOrd_Card_Shop.Master
         {
             Response.Redirect("~/Views/Login.aspx");
         }
+
+        protected void SearchBar_TextChanged(object sender, EventArgs e)
+        {
+            string keyword = SearchBar.Text.Trim();
+
+            Response.Redirect("~/Views/OrderCard.aspx?query=" + Server.UrlEncode(keyword));
+        }
     }
 }

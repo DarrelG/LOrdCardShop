@@ -16,22 +16,39 @@ namespace LOrd_Card_Shop.Views
         {
             if (!IsPostBack)
             {
-                LoadCards();
+                string query = Request.QueryString["query"];
+
+                LoadCards(query);
             }
         }
-        private void LoadCards()
+        private void LoadCards(string query)
         {
-            List<Card> cards = CardController.GetAllCards();
-
-            if (cards == null || cards.Count == 0)
+            if (string.IsNullOrEmpty(query))
             {
-                lblMessage.Text = "No cards available.";
-                lblMessage.Visible = true;
-                return;
-            }
+                List<Card> cards = CardController.GetAllCards();
 
-            rptCards.DataSource = cards;
-            rptCards.DataBind();
+                if (cards == null || cards.Count == 0)
+                {
+                    lblMessage.Text = "No cards available.";
+                    lblMessage.Visible = true;
+                    return;
+                }
+
+                rptCards.DataSource = cards;
+                rptCards.DataBind();
+            }
+            else
+            {
+                List<Card> cards = CardController.SearchCards(query);
+                if (cards == null || cards.Count == 0)
+                {
+                    lblMessage.Text = "No cards found for the search query.";
+                    lblMessage.Visible = true;
+                    return;
+                }
+                rptCards.DataSource = cards;
+                rptCards.DataBind();
+            }
         }
 
         protected void AddButton_Click(object sender, EventArgs e)

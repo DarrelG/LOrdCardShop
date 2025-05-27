@@ -18,5 +18,9 @@ namespace LOrd_Card_Shop.Controller
         {
             return CardHandler.GetCardById(id);
         }
+        public static List<Card> SearchCards(string query)
+        {
+            return CardHandler.SearchCards(query);
+        }
     }
 }

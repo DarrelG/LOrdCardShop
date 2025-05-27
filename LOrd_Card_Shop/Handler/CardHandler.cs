@@ -57,11 +57,11 @@ namespace LOrd_Card_Shop.Handler
                 CardRepository.editCard(id, name, price, desc, type, isFoil);
 
                 response.Redirect("ManageCard.aspx");
-                
+
             }
             catch (Exception ex)
             {
-                error.Text= ex.Message;
+                error.Text = ex.Message;
             }
         }
         public static void deleteCardHandler(int id)
@@ -103,6 +103,10 @@ namespace LOrd_Card_Shop.Handler
             {
                 error.Text = ex.Message;
             }
+        }
+        public static List<Card> SearchCards(string query)
+        {
+            return GetAllCards().Where(c => c.CardName.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0).ToList();
         }
     }
 }
