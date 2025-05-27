@@ -26,7 +26,7 @@ namespace LOrd_Card_Shop.Views
             string type = TypeTb.Text;
             string foilValue = FoilDd.SelectedValue;
 
-            CardHandler.editCardHandler(id, name, price, description, type, foilValue, Message, Response);
+            CardController.editCardController(id, name, price, description, type, foilValue, Message, Response);
         }
     }
 }

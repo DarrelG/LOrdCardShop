@@ -13,7 +13,7 @@ namespace LOrd_Card_Shop.Views
     {
         public void refreshGrid()
         {
-            List<TransactionHeader> list = TransactionHeaderController.GetTransactionHeaders();
+            List<TransactionHeader> list = TransactionController.GetTransactionHeaders();
             TransHead.DataSource = list;
             TransHead.DataBind();
         }
@@ -35,7 +35,7 @@ namespace LOrd_Card_Shop.Views
         {
             GridViewRow row = TransHead.Rows[e.NewEditIndex];
             int id = int.Parse(row.Cells[0].Text);
-            TransactionHeaderController.editStatus(id);
+            TransactionController.editStatus(id);
             TransHead.EditIndex = -1;
             refreshGrid();
         }

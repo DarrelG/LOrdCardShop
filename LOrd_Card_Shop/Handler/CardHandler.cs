@@ -27,42 +27,43 @@ namespace LOrd_Card_Shop.Handler
             return CardRepository.GetCardById(cardId);
         }
 
-        public static void editCardHandler(int id, string name, decimal price, string desc, string type, string foil, Label error, HttpResponse response)
+        public static void editCardHandler(int id, string name, decimal price, string desc, string type, bool isFoil)
         {
-            try
-            {
-                if (string.IsNullOrWhiteSpace(name) || name.Length < 5 || name.Length > 50 || !Regex.IsMatch(name, @"^[A-Za-z\s]+$"))
-                {
-                    throw new Exception("Name must be 5-50 characters and alphabetic with spaces only.");
-                }
-                if (price < 10000)
-                {
-                    throw new Exception("Price must be a valid number and >= 10000.");
-                }
-                else if (string.IsNullOrWhiteSpace(desc))
-                {
-                    throw new Exception("Description must not be empty.");
-                }
-                else if (type != "Spell" && type != "Monster")
-                {
-                    throw new Exception("Type must be 'Spell' or 'Monster'.");
-                }
-                else if (foil != "yes" && foil != "no")
-                {
-                    throw new Exception("Foil must be 'yes' or 'no'.");
-                }
+            CardRepository.editCard(id, name, price, desc, type, isFoil);
+            //try
+            //{
+            //    if (string.IsNullOrWhiteSpace(name) || name.Length < 5 || name.Length > 50 || !Regex.IsMatch(name, @"^[A-Za-z\s]+$"))
+            //    {
+            //        throw new Exception("Name must be 5-50 characters and alphabetic with spaces only.");
+            //    }
+            //    if (price < 10000)
+            //    {
+            //        throw new Exception("Price must be a valid number and >= 10000.");
+            //    }
+            //    else if (string.IsNullOrWhiteSpace(desc))
+            //    {
+            //        throw new Exception("Description must not be empty.");
+            //    }
+            //    else if (type != "Spell" && type != "Monster")
+            //    {
+            //        throw new Exception("Type must be 'Spell' or 'Monster'.");
+            //    }
+            //    else if (foil != "yes" && foil != "no")
+            //    {
+            //        throw new Exception("Foil must be 'yes' or 'no'.");
+            //    }
 
-                bool isFoil = foil == "yes";
+            //    bool isFoil = foil == "yes";
 
-                CardRepository.editCard(id, name, price, desc, type, isFoil);
+            //    CardRepository.editCard(id, name, price, desc, type, isFoil);
 
-                response.Redirect("ManageCard.aspx");
+            //    response.Redirect("ManageCard.aspx");
 
-            }
-            catch (Exception ex)
-            {
-                error.Text = ex.Message;
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    error.Text = ex.Message;
+            //}
         }
         public static void deleteCardHandler(int id)
         {
@@ -70,39 +71,9 @@ namespace LOrd_Card_Shop.Handler
             CardRepository.deleteCard(cardToDelete);
         }
 
-        public async static Task addCardHandler(string name, decimal price, string desc, string type, string foil, Label error, HttpResponse response)
+        public async static Task addCardHandler(string name, decimal price, string desc, string type, bool isFoil)
         {
-            try
-            {
-                if (string.IsNullOrWhiteSpace(name) || name.Length < 5 || name.Length > 50 || !Regex.IsMatch(name, @"^[A-Za-z\s]+$"))
-                {
-                    throw new Exception("Name must be 5-50 characters and alphabetic with spaces only.");
-                }
-                if (price < 10000)
-                {
-                    throw new Exception("Price must be a valid number and >= 10000.");
-                }
-                if (string.IsNullOrWhiteSpace(desc))
-                {
-                    throw new Exception("Description must not be empty.");
-                }
-                if (type != "Spell" && type != "Monster")
-                {
-                    throw new Exception("Type must be 'Spell' or 'Monster'.");
-                }
-                if (foil != "yes" && foil != "no")
-                {
-                    throw new Exception("Foil must be 'yes' or 'no'.");
-                }
-
-                bool isFoil = foil == "yes";
-
-                await CardRepository.addCard(name, price, desc, type, isFoil);
-            }
-            catch (Exception ex)
-            {
-                error.Text = ex.Message;
-            }
+            await CardRepository.addCard(name, price, desc, type, isFoil);
         }
         public static List<Card> SearchCards(string query)
         {

@@ -1,6 +1,7 @@
 ﻿using LOrd_Card_Shop.Handler;
 using LOrd_Card_Shop.Models;
 using LOrd_Card_Shop.Repository;
+using LOrd_Card_Shop.Controller;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,17 +18,17 @@ namespace LOrd_Card_Shop.Views
 
         public void refreshGrid()
         {
-            List<Card> list = CardRepository.GetAllCards();
+            List<Card> list = CardController.GetAllCards();
             CardsGV.DataSource = list;
             CardsGV.DataBind();
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Role"].ToString() != "Admin")
-            {
-                Response.Redirect("Login.aspx");
-            }
+            //if (Session["Role"].ToString() != "Admin")
+            //{
+            //    Response.Redirect("Login.aspx");
+            //}
 
             if (!IsPostBack)
             {
@@ -58,7 +59,7 @@ namespace LOrd_Card_Shop.Views
         {
             GridViewRow row = CardsGV.Rows[e.RowIndex];
             int id = int.Parse(row.Cells[0].Text);
-            CardHandler.deleteCardHandler(id);  
+            CardController.deleteCardHandler(id);  
             refreshGrid();
         }
     }
