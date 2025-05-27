@@ -33,6 +33,15 @@ namespace LOrd_Card_Shop.Master
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
+        /// SearchBar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox SearchBar;
+
+        /// <summary>
         /// DefaultNavbar control.
         /// </summary>
         /// <remarks>

@@ -32,7 +32,7 @@ namespace LOrd_Card_Shop.Views
             string email = emailTb.Text;
             DateTime DOB = Calendar1.SelectedDate;
 
-            await UserController.updateUserData(username, password, newPass, confirmpass, gender, email, DOB, errLbl, Convert.ToInt32(Session["UserID"]));
+            await UserController.updateUserData(username, password, newPass, confirmpass, gender, email, DOB, errLbl, Convert.ToInt32(Session["UserID"]), Response);
 
         }
     }

@@ -131,6 +131,10 @@
             margin-left: 10px;
             margin-top: 10px;
         }
+
+        #SearchBar{
+            margin: auto;
+        }
     </style>
 </head>
 <body>
@@ -144,7 +148,7 @@
                 <a href="Cart.aspx">Cart</a>
             </div>
 
-            
+            <asp:TextBox ID="SearchBar" runat="server" placeholder="Search"></asp:TextBox>
 
             <div class="nav-buttons">
                 <asp:Panel ID="DefaultNavbar" runat="server" Visible="false">
