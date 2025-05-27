@@ -13,10 +13,6 @@ namespace LOrd_Card_Shop.Models
         public string CardName { get; set; }
         public decimal CardPrice { get; set; }
         public int Quantity { get; set; }
-        public decimal SubTotal { get; set; } 
-
-        public virtual TransactionHeader ThDb { get; set; }
-        public virtual Users UserDb { get; set; }
-        public virtual Card CardDb { get; set; }
+        public decimal SubTotal { get; set; }
     }
 }
