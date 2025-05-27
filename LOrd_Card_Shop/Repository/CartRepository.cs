@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 using LOrd_Card_Shop.Factory;
+using System.Data.Entity.Migrations;
 
 namespace LOrd_Card_Shop.Repository
 {
@@ -29,6 +30,7 @@ namespace LOrd_Card_Shop.Repository
         {
             var cartItems = CartDb.Where(c => c.UserID == userID).ToList();
             CartDb.RemoveRange(cartItems);
+            CartDb.AddOrUpdate();
             saveDbChange();
         }
 

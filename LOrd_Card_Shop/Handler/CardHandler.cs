@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,9 +11,8 @@ using System.Text.RegularExpressions;
 
 namespace LOrd_Card_Shop.Handler
 {
-    public static class CardHandler
+    public class CardHandler
     {
-
         public static List<Card> GetAllCards()
         {
             return CardRepository.GetAllCards();
@@ -31,7 +29,6 @@ namespace LOrd_Card_Shop.Handler
 
         public static void editCardHandler(int id, string name, decimal price, string desc, string type, string foil, Label error, HttpResponse response)
         {
-            // Validation
             try
             {
                 if (string.IsNullOrWhiteSpace(name) || name.Length < 5 || name.Length > 50 || !Regex.IsMatch(name, @"^[A-Za-z\s]+$"))
@@ -69,7 +66,8 @@ namespace LOrd_Card_Shop.Handler
         }
         public static void deleteCardHandler(int id)
         {
-            CardRepository.deleteCard(id);
+            Card cardToDelete = CardRepository.GetCardById(id);
+            CardRepository.deleteCard(cardToDelete);
         }
 
         public async static Task addCardHandler(string name, decimal price, string desc, string type, string foil, Label error, HttpResponse response)
@@ -108,40 +106,3 @@ namespace LOrd_Card_Shop.Handler
         }
     }
 }
-=======
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Web;
-//using LOrd_Card_Shop.Models;
-//using LOrd_Card_Shop.Repository;
-
-//namespace LOrd_Card_Shop.Handler
-//{
-//    public class CardHandler
-//    {
-//        CardRepository repo = new CardRepository();
-
-//        public List<Card> GetAllCards()
-//        {
-//            return repo.GetAllCards();
-//        }
-//        public Card GetCardById(int id)
-//        {
-//            return repo.GetCardById(id);
-//        }
-//        public string AddToCart(int userID, int cardId)
-//        {
-//            if (userID == 0) return "Please login first";
-//            if (cardId == 0) return "Invalid card";
-
-//            repo.AddToCart(userID, cardId);
-//            return "Item added to cart!";
-//        }
-//        public Card GetCardDetails(int cardId)
-//        {
-//            return repo.GetCardById(cardId);
-//        }
-//    }
-//}
->>>>>>> 7521ac7bc3470d3e489565f6e5ef444fc2c7cc4b

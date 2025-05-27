@@ -36,6 +36,7 @@ namespace LOrd_Card_Shop.Handler
             if (existedData != null)
             {
                 existedData.Quantity += 1;
+                CartRepository.saveDbChange();
             }
             else
             {

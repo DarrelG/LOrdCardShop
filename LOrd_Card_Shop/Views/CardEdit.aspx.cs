@@ -1,10 +1,12 @@
 ﻿using LOrd_Card_Shop.Handler;
 using System;
+using LOrd_Card_Shop.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using LOrd_Card_Shop.Controller;
 
 namespace LOrd_Card_Shop.Views
 {
@@ -23,7 +25,6 @@ namespace LOrd_Card_Shop.Views
             string description = DescTb.Text;
             string type = TypeTb.Text;
             string foilValue = FoilDd.SelectedValue;
-
 
             CardHandler.editCardHandler(id, name, price, description, type, foilValue, Message, Response);
         }

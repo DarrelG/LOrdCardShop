@@ -1,11 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using LOrd_Card_Shop.Singleton;
-using System.Linq;
-using System.Web;
+﻿using LOrd_Card_Shop.Factory;
 using LOrd_Card_Shop.Models;
+using LOrd_Card_Shop.Singleton;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
-using LOrd_Card_Shop.Factory;
+using System.Web;
+using System.Xml.Linq;
 
 namespace LOrd_Card_Shop.Repository
 {
@@ -14,54 +17,31 @@ namespace LOrd_Card_Shop.Repository
         public static List<Card> GetAllCards()
         {
             InitAsync().Wait();
-            List<Card> cards = CardDb.ToList();
-            return cards;
+            return CardDb.ToList();
         }
 
         public static Card GetCardById(int id)
         {
-            return CardDb.Find(id);
+            return CardDb.FirstOrDefault(x => x.CardID == id);
         }
 
-        public static void deleteCard(int id)
+        public static void deleteCard(Card removedCard)
         {
-            //InitAsync().Wait();
-            Card deleteCard = CardDb.FirstOrDefault(x => x.CardID == id);
-            if (deleteCard != null)
-            {
-                CardDb.Remove(deleteCard);
-                saveDbChange();
-                //try
-                //{
-                    
-                //}
-                //catch (Exception ex)
-                //{
-                //    Console.WriteLine(ex);
-                //}
-            }
+            CardDb.Remove(removedCard);
+            saveDbChange();
         }
 
-        public static void editCard(int id, string name, decimal price, string desc, string type, bool isCurFoil)
+        public static void editCard(int id, string name, decimal price, string desc, string type, bool foil)
         {
             InitAsync().Wait();
-            Card existingCard = CardDb.FirstOrDefault(x => x.CardID == id);
-            if (existingCard != null)
-            {
-                try
-                {
-                    existingCard.CardName = name;
-                    existingCard.CardPrice = price;
-                    existingCard.CardDesc = desc;
-                    existingCard.CardType = type;
-                    existingCard.isFoil = isCurFoil;
-                    saveDbChange();
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex);
-                }
-            }
+            Card selectedData = CardDb.FirstOrDefault(x => x.CardID == id);
+            selectedData.CardName = name;
+            selectedData.CardPrice = price;
+            selectedData.CardDesc = desc;
+            selectedData.CardType = type;
+            selectedData.isFoil = foil;
+            saveDbChange();
+
         }
 
         public async static Task addCard(string name, decimal price, string desc, string type, bool isCurFoil)

@@ -4,13 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using LOrd_Card_Shop.Handler;
+using LOrd_Card_Shop.Controller;
+using LOrd_Card_Shop.Models;
 
 namespace LOrd_Card_Shop.Views
 {
     public partial class CheckOut : System.Web.UI.Page
     {
-        CartHandler cartHandler = new CartHandler();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -18,8 +18,8 @@ namespace LOrd_Card_Shop.Views
                 if (Session["user"] != null || Request.Cookies["user_cookies"] != null)
                 {
                     int userId = Convert.ToInt32(Session["UserID"]);
-                    var cartItems = cartHandler.GetCartItems(userId);
-                    decimal total = cartHandler.CalculateTotal(cartItems);
+                    var cartItems = CartController.GetCartItems(userId);
+                    decimal total = CartController.CalculateTotal(cartItems);
 
                     rptCheckoutItems.DataSource = cartItems;
                     rptCheckoutItems.DataBind();
@@ -30,12 +30,12 @@ namespace LOrd_Card_Shop.Views
         protected void btnConfirm_Click(object sender, EventArgs e)
         {
             int userId = Convert.ToInt32(Session["UserID"]);
-            bool success = cartHandler.Checkout(userId);
+            bool success = CartController.Checkout(userId);
 
             if (success)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Checkout successful!');", true);
-                Response.Redirect("OrderCard.aspx");
+                string script = "alert('Checkout successful!'); window.location='OrderCard.aspx';";
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", script, true);
             }
             else
             {

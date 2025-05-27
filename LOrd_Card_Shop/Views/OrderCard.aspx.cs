@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using LOrd_Card_Shop.Models;
+using LOrd_Card_Shop.Controller;
 using LOrd_Card_Shop.Handler;
 
 namespace LOrd_Card_Shop.Views
@@ -14,15 +16,12 @@ namespace LOrd_Card_Shop.Views
         {
             if (!IsPostBack)
             {
-                if (Session["user"] != null || Request.Cookies["user_cookies"] != null)
-                {
-                    LoadCards();
-                }
+                LoadCards();
             }
         }
         private void LoadCards()
         {
-            var cards = CardHandler.GetAllCards();
+            List<Card> cards = CardController.GetAllCards();
 
             if (cards == null || cards.Count == 0)
             {
@@ -37,10 +36,15 @@ namespace LOrd_Card_Shop.Views
 
         protected void AddButton_Click(object sender, EventArgs e)
         {
+            if (Session["user"] == null && Request.Cookies["user_cookies"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
             int userId = Convert.ToInt32(Session["UserID"]);
             int cardId = Convert.ToInt32((sender as Button).CommandArgument);
 
-            CartHandler.AddToCart(userId, cardId);
+            CartController.AddToCart(userId, cardId);
+            ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('Card Added');", true);
         }
     }
 }

@@ -4,13 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using LOrd_Card_Shop.Controller;
 using LOrd_Card_Shop.Handler;
 
 namespace LOrd_Card_Shop.Views
 {
     public partial class Cart : System.Web.UI.Page
     {
-        CartHandler cartHandler = new CartHandler();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -18,10 +18,19 @@ namespace LOrd_Card_Shop.Views
                 if (Session["user"] != null || Request.Cookies["user_cookies"] != null)
                 {
                     int userId = Convert.ToInt32(Session["UserID"]);
-                    var cartItems = cartHandler.GetCartItems(userId);
+                    var cartItems = CartController.GetCartItems(userId);
+
+                    if(cartItems.Count == 0)
+                    {
+                        Response.Redirect("OrderCard.aspx");
+                    }
 
                     rptCartItems.DataSource = cartItems;
                     rptCartItems.DataBind();
+                }
+                else
+                {
+                    Response.Redirect("Login.aspx");
                 }
             }
         }
