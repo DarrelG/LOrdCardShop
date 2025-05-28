@@ -10,6 +10,7 @@ using CrystalDecisions.Shared;
 using LOrd_Card_Shop.Models;
 using LOrd_Card_Shop.DataSet;
 using LOrd_Card_Shop.Report;
+using LOrd_Card_Shop.Controller;
 
 namespace LOrd_Card_Shop.Views
 {
@@ -27,7 +28,7 @@ namespace LOrd_Card_Shop.Views
         private void LoadReport()
         {
 
-            List<TransactionReportModel> data = TransactionReportHandler.GetReportData();
+            List<TransactionReportModel> data = TransactionController.GetAllReportData();
             CrystalReport1 report = new CrystalReport1();
 
             CrystalReportViewer1.ReportSource = report;

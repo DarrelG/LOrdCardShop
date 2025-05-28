@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using LOrd_Card_Shop.Controller;
 
 namespace LOrd_Card_Shop.Views
 {
@@ -24,7 +25,7 @@ namespace LOrd_Card_Shop.Views
             string foilValue = FoilDd.SelectedValue;
 
 
-            await CardHandler.addCardHandler(name, price, description, type, foilValue, Message, Response);
+            await CardController.addCardController(name, price, description, type, foilValue, Message, Response);
             Response.Redirect("ManageCard.aspx", false);
             Context.ApplicationInstance.CompleteRequest();
         }

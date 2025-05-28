@@ -1,5 +1,6 @@
 ﻿using LOrd_Card_Shop.Handler;
 using LOrd_Card_Shop.Models;
+using LOrd_Card_Shop.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,6 +44,20 @@ namespace LOrd_Card_Shop.Controller
                 Response.Write($"Error: {ex.Message}");
                 return new List<TransactionDetailResult>();
             }
+        }
+
+        public static List<TransactionHeader> GetTransactionHeaders()
+        {
+            return TransactionHandler.getAllTransaction();
+        }
+        public static void editStatus(int id)
+        {
+            TransactionHandler.editTransactionStatus(id);
+        }
+
+        public static List<TransactionReportModel> GetAllReportData()
+        {
+            return TransactionHandler.GetReportData();
         }
     }
 }

@@ -31,6 +31,28 @@ namespace LOrd_Card_Shop.Handler
             {
                 return TransactionRepository.GetTransactionHistory(userId);
             }
-        }  
+        }
+
+        public static List<TransactionHeader> getAllTransaction()
+        {
+            return TransactionRepository.getAllTransaction();
+        }
+
+        public static void editTransactionStatus(int id)
+        {
+            TransactionHeader transaction = TransactionRepository.GetTransactionById(id);
+            if (transaction.Status == "Waiting")
+            {
+                transaction.Status = "Completed";
+            }
+
+            TransactionRepository.editStatus(transaction);
+
+        }
+
+        public static List<TransactionReportModel> GetReportData()
+        {
+            return TransactionRepository.GetTransactionReportData();
+        }
     }
 }
