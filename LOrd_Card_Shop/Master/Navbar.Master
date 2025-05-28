@@ -142,12 +142,17 @@
         <div class="navbar">
             <h1><a href="Home.aspx" style="color: #f39c12;">LOrd Card Shop</a></h1>
             
-            <div class="nav-links">
+            <div class="nav-links" id="userSection" style="display: block;" runat="server">
                 <a href="OrderCard.aspx">Order Card</a>
                 <a href="TransactionHistory.aspx">History</a>
                 <a href="Cart.aspx">Cart</a>
             </div>
 
+            <div class="nav-links" id="Div1" style="display: block;" runat="server">
+                <a href="ManageCard.aspx">Manage Card</a>
+                <a href="TransactionHistory.aspx">View Transaction</a>
+                <a href="ViewTransactionReport.aspx">Transaction Report</a>
+            </div>
             <asp:TextBox ID="SearchBar" runat="server" AutoPostBack="true" OnTextChanged="SearchBar_TextChanged" placeholder="Search"></asp:TextBox>
 
             <div class="nav-buttons">

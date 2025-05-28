@@ -24,7 +24,8 @@ namespace LOrd_Card_Shop.Views
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Role"].ToString() != "Admin")
+            string userRole = UserRepository.getUserByName(Session["user"].ToString()).UserRole;
+            if (!string.Equals(userRole, "ADMIN"))
             {
                 Response.Redirect("Login.aspx");
             }
